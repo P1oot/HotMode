@@ -14,9 +14,13 @@
 <body class="wrapper">
   <header class="">
     <div class="container head-container">
-      <p class="phone">+7 (904) 217-64-49</p>
-      <p style="color: aquamarine;">Виджет</p>
-      <div><p style="color: aquamarine;">logo</p></div>
+      <div class="head-container phone" style="width:360px">
+        +7 (904) 217-64-49
+        <img src="{% static 'src/vk.png' %}" style="width:30px; height:30px; margin-left:20px">
+      </div>
+      {% comment %} <p style="color: aquamarine;">Виджет</p> {% endcomment %}
+      <div style="width:360px"><img src="{% static 'src/HM_W.png' %}" style="width:120px; height:120px"></div>
+      <div style="width:360px"></div>
     </div>
   </header>
 
@@ -103,7 +107,6 @@
       </h2>
       {% for barber in barbers %}
         {% thumbnail barber.photo "200x200" crop="center" upscale=True as im %}
-          {% comment %} <img class="card-img my-2" src="{{ im.url }}" width=100 height=100> {% endcomment %}
           <img class="" src="{{ im.url }}" width=200 height=200>
         {% endthumbnail %}
         <p>{{ barber.name }}</p>
