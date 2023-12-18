@@ -14,7 +14,7 @@
 <body class="wrapper">
   <header class="">
     <div class="container head-container">
-      <p style="color: aquamarine;">Телефон</p>
+      <p class="phone">+7 (904) 217-64-49</p>
       <p style="color: aquamarine;">Виджет</p>
       <div><p style="color: aquamarine;">logo</p></div>
     </div>
@@ -22,44 +22,48 @@
 
   <main class="container">
     <p style="margin: 150px; color: aquamarine;">Описание</p>
-    <h2 class="services">
-      <b></b>
-      <span class="services-title">Цены барбершопа</span>
-      <b></b>
-    </h2>
-    <table width="509">
-      <tbody>
-        <tr>
-          <td width="445">
-            <h2>Услуги барбера</h2>
-          </td>
-          <td width="64">
-            <h2>Стоимость</h2>
-          </td>
-        </tr>
-        {% for service in services %}
+    {% if services %}
+      <h2 class="services">
+        <b></b>
+        <span class="services-title">Цены барбершопа</span>
+        <b></b>
+      </h2>
+      <table width="509">
+        <tbody>
           <tr>
-            <td width="445">{{ service.name }}</td>
-            <td width="64">{{ service.price }} р.</td>
+            <td width="445">
+              <h2>Услуги барбера</h2>
+            </td>
+            <td width="64">
+              <h2>Стоимость</h2>
+            </td>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <h2 class="services" style="margin-top: 40px">
-      <b></b>
-      <span class="services-title">Акции</span>
-      <b></b>
-    </h2>
-    <table width="509">
-      <tbody>
-        {% for promotion in promotions %}
-          <tr>
-            <td width="109">{{ promotion.name }}</td>
-            <td width="400">{{ promotion.description }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+          {% for service in services %}
+            <tr>
+              <td width="445">{{ service.name }}</td>
+              <td width="64">{{ service.price }} р.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>  
+    {% endif %}
+    {% if promotions %}
+      <h2 class="services" style="margin-top: 40px">
+        <b></b>
+        <span class="services-title">Акции</span>
+        <b></b>
+      </h2>
+      <table width="509">
+        <tbody>
+          {% for promotion in promotions %}
+            <tr>
+              <td width="109">{{ promotion.name }}</td>
+              <td width="400">{{ promotion.description }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
     <!-- Карта -->
     <div style="position:relative;overflow:hidden;margin-top: 40px;">
       <a href="https://yandex.ru/maps/2/saint-petersburg/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">
@@ -79,23 +83,33 @@
         </a>
       </div>
     </div>
-    
-    {% comment %} <p style="margin-top: 150px; color: aquamarine;">Работы</p> {% endcomment %}
-    <h2 class="services" style="margin-top: 40px">
-      <b></b>
-      <span class="services-title">Работы</span>
-      <b></b>
-    </h2>
-    {% for haircut in haircuts %}
-      {% thumbnail haircut.image "200x200" crop="center" upscale=True as im %}
-        {% comment %} <img class="card-img my-2" src="{{ im.url }}" width=100 height=100> {% endcomment %}
-        <img class="" src="{{ im.url }}" width=200 height=200>
-      {% endthumbnail %}
-    {% endfor %}
-    <h2 class="services" style="margin-top: 25px">
-      <b></b>
-    </h2>
-    <p style="margin-bottom: 150px; color: aquamarine;">Мастера??</p>
+    {% if haircuts %}
+      <h2 class="services" style="margin-top: 40px">
+        <b></b>
+        <span class="services-title">Работы</span>
+        <b></b>
+      </h2>
+      {% for haircut in haircuts %}
+        {% thumbnail haircut.image "200x200" crop="center" upscale=True as im %}
+          {% comment %} <img class="card-img my-2" src="{{ im.url }}" width=100 height=100> {% endcomment %}
+          <img class="" src="{{ im.url }}" width=200 height=200>
+        {% endthumbnail %}
+      {% endfor %}
+    {% endif %}
+    {% if barbers %}
+      <h2 class="services" style="margin-top: 25px">
+        <b></b>
+        <span class="services-title">Наши мастера</span>
+      </h2>
+      {% for barber in barbers %}
+        {% thumbnail barber.photo "200x200" crop="center" upscale=True as im %}
+          {% comment %} <img class="card-img my-2" src="{{ im.url }}" width=100 height=100> {% endcomment %}
+          <img class="" src="{{ im.url }}" width=200 height=200>
+        {% endthumbnail %}
+        <p>{{ barber.name }}</p>
+        <p>{{ barber.description }}</p>
+      {% endfor %}
+    {% endif %}
   </main>
   
   <footer class="container foot-container">

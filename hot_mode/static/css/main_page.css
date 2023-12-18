@@ -48,3 +48,9 @@ table td{
   align-items: center;
   justify-content: space-between;
 }
+.phone{
+  font-family: Open Sans, sans-serif;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
