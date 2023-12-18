@@ -27,7 +27,7 @@ class Services(models.Model):
 class Haircuts(models.Model):
     image = models.ImageField(
         verbose_name='Стрижка',
-        upload_to='img/',
+        upload_to='haircuts/',
     )
 
     class Meta:
@@ -49,3 +49,23 @@ class Promotions(models.Model):
     class Meta:
         verbose_name = 'Акция'
         verbose_name_plural = 'Акции'
+
+
+class Barbers(models.Model):
+    name = models.CharField(
+        verbose_name='ФИО',
+        max_length=200,
+        unique=True,
+    )
+    description = models.CharField(
+        verbose_name='Описание',
+        max_length=400,
+    )
+    photo = models.ImageField(
+        verbose_name='Фото',
+        upload_to='barbers/',
+    )
+
+    class Meta:
+        verbose_name = 'Барбер'
+        verbose_name_plural = 'Барберы'
