@@ -65,25 +65,25 @@ WSGI_APPLICATION = 'hot_mode.wsgi.application'
 
 # SQLite database
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # PostgresSQL database
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': os.getenv('DB_ENGINE'),
-#         'NAME': os.getenv('DB_NAME'),
-#         'USER': os.getenv('POSTGRES_USER'),
-#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-#         'HOST': os.getenv('DB_HOST'),
-#         'PORT': os.getenv('DB_PORT')
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
+        'NAME': os.getenv('DB_NAME', default='postgres'),
+        'USER': os.getenv('POSTGRES_USER', default='postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='Dan.1324'),
+        'HOST': os.getenv('DB_HOST', default='db'),
+        'PORT': os.getenv('DB_PORT', default='5432')
+    }
+}
 
 
 # Password validation
@@ -123,8 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, '../frontend/')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 MEDIA_URL = '/media/'
